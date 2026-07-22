@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nikhil Marudai — what I've built</title>
+<style>
+  :root{
+    --bg:#fbfaf8; --panel:#fff; --line:#e6e3dd; --ink:#1b1a17; --muted:#6d6a62;
+    --faint:#9a968c; --accent:#8a3d2c; --accent-soft:rgba(138,61,44,.12); --grid:#eeebe4;
+    --active:#2f7d3a; --dormant:#9a6a00; --cold:#8a8681; --empty:#b5b1a8;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#141311;--panel:#1c1b18;--line:#2f2d29;--ink:#eceae4;--muted:#9c988e;
+      --faint:#6f6c64;--accent:#d1795f;--accent-soft:rgba(209,121,95,.16);--grid:#252420;
+      --active:#5cbf6a;--dormant:#c99a3a;--cold:#8a8681;--empty:#54514b;}
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);
+    font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  .wrap{max-width:1000px;margin:0 auto;padding:34px 22px 64px}
+  h1{font-size:25px;font-weight:700;letter-spacing:-.4px}
+  .tagline{color:var(--muted);font-size:14.5px;margin-top:3px}
+  .idlinks{font-family:var(--mono);font-size:12px;margin-top:11px}
+  .idlinks a{color:var(--accent);text-decoration:none}
+  .idlinks a:hover{text-decoration:underline}
+  .seclabel{font-size:16px;font-weight:700;color:var(--ink);letter-spacing:-.2px;
+    margin:24px 0 12px;padding-bottom:8px;border-bottom:1.5px solid var(--ink)}
+  .creds{font-size:13px;color:var(--muted);line-height:1.95}
+  .creds em{font-style:italic}
+  .creds .b{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-right:8px}
+  .pdesc a{color:var(--accent);text-decoration:none;font-family:var(--mono);font-size:11px}
+  .pdesc a:hover{text-decoration:underline}
+  .sig .cn{font-size:21px;font-weight:700;letter-spacing:-.3px;line-height:1.05;color:var(--accent)}
+  .sig .cn em{font-style:italic}
+  .cfm{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.04em;
+    color:var(--accent);border-bottom:1px dashed var(--accent);padding:0 .15em}
+  .thumb{display:inline-block;position:relative;margin-top:9px;width:150px;border-radius:6px;
+    overflow:hidden;border:1px solid var(--line);line-height:0}
+  .thumb img{display:block;width:100%;height:auto}
+  .thumb .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:22px;background:rgba(0,0,0,.22)}
+  .thumb:hover .play{background:rgba(0,0,0,.05)}
+  .pnote{color:var(--muted);font-size:11.5px;margin-top:6px;font-family:var(--mono)}
+  /* flagship cards */
+  .flag{border:1px solid var(--line);border-radius:12px;padding:20px 20px 16px;margin-bottom:14px;background:var(--panel)}
+  .flag-name{font-size:19px;font-weight:700;letter-spacing:-.2px}
+  .flag-tag{color:var(--muted);font-size:13.5px;margin-top:2px}
+  .flag-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+  .fp{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.03em;
+    border:1px solid var(--line);border-radius:20px;padding:4px 11px;color:var(--muted)}
+  .fp b{color:var(--ink);font-weight:640}
+  .fp-accent{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,transparent)}
+  .flag-body{display:flex;gap:20px;margin-top:14px;align-items:flex-start}
+  @media(max-width:680px){.flag-body{flex-direction:column}}
+  .flag-desc{flex:1;min-width:0}
+  .flag-desc>p{color:var(--muted);font-size:14.5px;line-height:1.6;margin:0}
+  .flag-media{flex:none;width:300px;position:relative;display:block;border-radius:8px;
+    overflow:hidden;border:1px solid var(--line);line-height:0}
+  @media(max-width:680px){.flag-media{width:100%}}
+  .flag-media img{width:100%;display:block}
+  .flag-media .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:30px;background:rgba(0,0,0,.22)}
+  .flag-media:hover .play{background:rgba(0,0,0,.05)}
+  .flag-novid{flex:none;width:300px;min-height:169px;border:1px dashed var(--line);border-radius:8px;
+    display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem;
+    color:var(--faint);font-family:var(--mono);font-size:11px}
+  @media(max-width:680px){.flag-novid{width:100%}}
+  .flag-arch{margin-top:13px;border-top:1px solid var(--line);padding-top:11px}
+  .flag-arch summary{cursor:pointer;list-style:none;font-size:12.5px;font-weight:600;color:var(--accent)}
+  .flag-arch summary::-webkit-details-marker{display:none}
+  .flag-arch summary::before{content:"+ "}
+  .flag-arch[open] summary::before{content:"– "}
+  .flag-arch .arch{color:var(--muted);font-size:14px;line-height:1.6;margin-top:9px;max-width:72ch}
+  /* other projects — larger rows that can carry a thumbnail */
+  .others{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .ocard{background:var(--panel);padding:15px 16px;display:flex;gap:16px;align-items:flex-start}
+  .ocard:hover{background:var(--bg)}
+  .ocard-main{flex:1;min-width:0}
+  .ohead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .oname{font-weight:600;font-size:15px}
+  .ometa{font-family:var(--mono);font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.03em}
+  .ometa .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:5px;vertical-align:1px}
+  .odesc{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.5;max-width:66ch}
+  .odesc strong{color:var(--ink)}
+  .othumb{flex:none;width:210px;height:118px;border-radius:8px;overflow:hidden;border:1px solid var(--line);position:relative;line-height:0;display:block}
+  .othumb img{width:100%;height:100%;object-fit:cover;object-position:top}
+  .othumb .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;background:rgba(0,0,0,.22)}
+  .othumb:hover .play{background:rgba(0,0,0,.05)}
+  @media(max-width:640px){.othumb{width:132px;height:76px}}
+  .ocount{color:var(--faint);font-size:11.5px;margin-top:8px;font-family:var(--mono)}
+  /* slideshow thumbnail */
+  .oslide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .35s}
+  .oslide img.on{opacity:1}
+  .onav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.42);color:#fff;
+    border:0;width:22px;height:30px;cursor:pointer;font-size:15px;line-height:1;z-index:3;opacity:0;transition:opacity .2s;padding:0}
+  .oslide:hover .onav{opacity:1}
+  .oprev{left:0;border-radius:0 5px 5px 0}
+  .onext{right:0;border-radius:5px 0 0 5px}
+  .odots{position:absolute;bottom:6px;left:0;right:0;display:flex;gap:5px;justify-content:center;z-index:3}
+  .odots i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.55);cursor:pointer}
+  .odots i.on{background:#fff}
+
+  .band{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;
+    overflow:hidden;margin:0 0 4px}
+  .sig{background:var(--panel);padding:16px 18px 14px}
+  .sig .n{font-size:28px;font-weight:640;letter-spacing:-.5px;font-variant-numeric:tabular-nums;font-family:var(--mono)}
+  .sig .n.set{color:var(--accent);font-size:15px;font-weight:600}
+  .sig .l{color:var(--muted);font-size:11.5px;margin-top:5px;line-height:1.35}
+  .sig .l b{color:var(--ink);font-weight:600}
+  .band2{color:var(--faint);font-size:12px;margin:4px 2px 0;font-family:var(--mono)}
+
+  /* charts */
+  .charts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 4px}
+  @media(max-width:640px){.charts{grid-template-columns:1fr}}
+  .chart{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 16px 10px;position:relative}
+  .chart h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+  .chart .hero{font-family:var(--mono);font-size:22px;font-weight:640;letter-spacing:-.4px;margin-top:2px;
+    font-variant-numeric:tabular-nums}
+  .chart svg{display:block;width:100%;height:auto;margin-top:8px;overflow:visible}
+  .chart .ax{fill:var(--faint);font-size:9.5px;font-family:var(--mono)}
+  .tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-family:var(--mono);
+    font-size:10.5px;padding:4px 7px;border-radius:4px;white-space:nowrap;opacity:0;transform:translate(-50%,-130%);transition:opacity .1s}
+
+  .controls{margin:14px 0 10px}
+  .controls input{width:100%;max-width:340px;background:var(--panel);border:1px solid var(--line);
+    color:var(--ink);border-radius:7px;padding:8px 12px;font-size:13px}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  thead th{text-align:left;color:var(--faint);font-weight:600;font-size:11px;
+    text-transform:uppercase;letter-spacing:.06em;padding:0 10px 8px;border-bottom:1px solid var(--line)}
+  th.num,td.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+  tbody td{padding:13px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:hover{background:var(--panel)}
+  .pname{font-weight:600;font-size:14.5px}
+  .ppath{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-top:2px}
+  .pdesc{color:var(--muted);font-size:12.5px;margin-top:5px;max-width:52ch;line-height:1.45}
+  .st{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);white-space:nowrap}
+  .dot{width:7px;height:7px;border-radius:50%}
+  .d-active{background:var(--active)}.d-dormant{background:var(--dormant)}
+  .d-cold{background:var(--cold)}.d-empty{background:var(--empty)}
+  td.num b{font-weight:640;font-size:15px}
+  .zero{color:var(--faint)}
+  tfoot td{padding:14px 10px 0;font-family:var(--mono);font-weight:640;font-variant-numeric:tabular-nums;
+    border-top:2px solid var(--line);font-size:14px}
+  tfoot td.lbl{font-family:inherit;font-weight:600;color:var(--muted);font-size:12px}
+  .foot{color:var(--faint);font-size:11.5px;margin-top:26px;line-height:1.7}
+  .foot code{font-family:var(--mono)}
+  @media(max-width:640px){ .ppath,.pdesc{display:none} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 id="idname"></h1>
+  <div class="idlinks" id="idlinks"></div>
+
+  <h2 class="seclabel">Academics</h2>
+  <div class="band" id="acad"></div>
+
+  <h2 class="seclabel">Output</h2>
+  <div class="band" id="band"></div>
+
+  <h2 class="seclabel">Growth over time</h2>
+  <div class="charts">
+    <div class="chart" id="c-lines"><h3>Lines written (cumulative)</h3><div class="hero" id="h-lines"></div></div>
+    <div class="chart" id="c-commits"><h3>Commits</h3><div class="hero" id="h-commits"></div></div>
+  </div>
+
+  <h2 class="seclabel">Flagships</h2>
+  <div id="flags"></div>
+
+  <h2 class="seclabel">Other projects</h2>
+  <div class="controls"><input id="q" placeholder="filter projects…" autocomplete="off"></div>
+  <div class="others" id="others"></div>
+  <div class="ocount" id="ocount"></div>
+
+  <h2 class="seclabel">Background</h2>
+  <div class="creds" id="creds"></div>
+
+  <div class="foot" id="notes"></div>
+</div>
+
+<script>
+const D = {"generated": "Jul 21, 2026", "projects": [{"id": "organism", "name": "Organism", "path": "~/Desktop/Code/Organism", "status": "active", "status_label": "Active", "commits": 1770, "lines": 185512, "since": "Apr 2026 \u00b7 3 mo", "since_raw": "2026-04-14", "summary": "AI-native single-cell analysis platform (codename RGO). A bioinformatician uploads an AnnData file (scRNA/scATAC/bulk/ChIP/CITE/spatial) or a DataFrame; an auto-baseline runs in a per-session Jupyter kernel and an embedded LLM loops through typed tools to answer questions, make plots, and accumulate state. Heavy AI-engineering (harness, tool catalog, state snapshots) + bioinformatics.", "video": "64vHFhdDKbY", "images": null}, {"id": "reach", "name": "REACH", "path": "~/Desktop/Code/REACH/social_media_project", "status": "active", "status_label": "Active", "commits": 1494, "lines": 166884, "since": "Nov 2025 \u00b7 8 mo", "since_raw": "2025-11-16", "summary": "Social-accountability / social-media platform (Django backend + Capacitor mobile). Streaks, challenges, verification, notifications, leaderboards; features include PostPulse, Wrapped, and Trophy Room.", "video": null, "images": null}, {"id": "meta", "name": "intelligence", "path": "~/Desktop/Code/intelligence", "status": "active", "status_label": "Active", "commits": 113, "lines": 9513, "since": "Jul 2026 \u00b7 0 mo", "since_raw": "2026-07-10", "summary": "The second-brain system itself: intelligence (the LIVE engine + vault \u2014 this repo), the dictation/transcription capture pipeline, tagging, routing, ranking. Its retired predecessors are scribe (old engine) and Cortex (old vault) \u2014 historical only.", "video": null, "images": null}, {"id": "softmodular", "name": "softmodular", "path": "~/Desktop/Code/SoftModularWorldModels", "status": "active", "status_label": "Active", "commits": 50, "lines": 2323, "since": "Jul 2026 \u00b7 0 mo", "since_raw": "2026-07-18", "summary": "Hybrid world-model research POC: small graph-network simulators (GNS) commit structured object state, a generative decoder renders the scene plus a \u03bb-regularized residual \u2014 \u03bb is the \"swallowing dial\" controlling how much the big blob absorbs the specialist modules. Walking-skeleton build (pymunk bouncing balls, tiny GNS, residual CNN decoder), staged training, modularity sweep planned.", "video": null, "images": null}, {"id": "softmodularworldmodels", "name": "softmodularworldmodels", "path": "~/Desktop/Code/SoftModularWorldModels", "status": "active", "status_label": "Active", "commits": 50, "lines": 2323, "since": "Jul 2026 \u00b7 0 mo", "since_raw": "2026-07-18", "summary": "Hybrid world model: small GNS blobs commit structured state; a generative decoder renders from it with a lambda swallowing dial.", "video": null, "images": null}, {"id": "hackwithbay", "name": "hackwithbay", "path": "~/Desktop/Code/hackwithbay", "status": "active", "status_label": "Active", "commits": 30, "lines": 1839, "since": "Jul 2026 \u00b7 0 mo", "since_raw": "2026-07-07", "summary": "Groundtruth \u2014 a graph-aware daily-accountability agent that reconciles intentions vs. actual activity over a Neo4j life graph, with live camera perception. (Hackathon build, HackWithBay.)", "video": "g5eg6ja7iWs", "images": null}, {"id": "daytrader", "name": "DayTrader", "path": "~/Desktop/Code/DayTrader", "status": "dormant", "status_label": "Dormant", "commits": 28, "lines": 3192, "since": "May 2026 \u00b7 2 mo", "since_raw": "2026-05-31", "summary": "Personal algo-trading research platform (Lumibot v4 + Alpaca, Python, equities-first, offline-reproducible). Research-before-build via edge probes and a findings log.", "video": null, "images": null}, {"id": "mira", "name": "MIRA", "path": "~/Desktop/Code/MIRA", "status": "cold", "status_label": "Cold", "commits": 20, "lines": 4911, "since": "Mar 2026 \u00b7 4 mo", "since_raw": "2026-03-28", "summary": "Hoppy \u2014 an iMessage grocery AI agent (Kimi K2 + memory) that turns meal requests into store shopping lists. Near-complete hackathon scaffold (dormant).", "video": null, "images": null}, {"id": "kindred", "name": "kindred", "path": "~/Desktop/Code/kindred", "status": "dormant", "status_label": "Dormant", "commits": 17, "lines": 2315, "since": "Jul 2026 \u00b7 0 mo", "since_raw": "2026-07-07", "summary": "Reference-architecture generator grounded in real companies: describe an idea, it finds similar companies over a Neo4j graph, shows the stacks they chose, and recommends a cited, frontier-weighted stack per layer.", "video": null, "images": null}, {"id": "polymarket", "name": "polymarket", "path": "~/Desktop/Code/polymarket", "status": "active", "status_label": "Active", "commits": 11, "lines": 659, "since": "Jul 2026 \u00b7 0 mo", "since_raw": "2026-07-15", "summary": "Python tooling for automated position analysis and trading on Polymarket US (order-book access, P&L dashboard, Ed25519 auth), built around a World Cup betting campaign / gameplan.", "video": null, "images": null}, {"id": "lens", "name": "Lens", "path": "~/Desktop/Code/Lens", "status": "dormant", "status_label": "Dormant", "commits": 0, "lines": 4235, "since": "\u2014", "since_raw": "", "summary": "Smart-glasses life-logging demo visualizing 30 days of AI-classified snapshots across three personas with rich charts (timeline ribbon, calendar heatmap).", "video": null, "images": null}, {"id": "realestate", "name": "realEstate", "path": "~/Desktop/Code/realEstate", "status": "active", "status_label": "Active", "commits": 0, "lines": 2787, "since": "\u2014", "since_raw": "", "summary": "A custom SF home-buying tool \u2014 the things no listings site gives you. Scrapes live listings, <strong>auto-excludes flood / liquefaction / fill hazard zones</strong>, computes <strong>drive-time from every listing to the Anthropic and OpenAI offices</strong>, and times it against an <strong>&ldquo;AI-IPO&rdquo; thesis</strong> \u2014 buy in before the frontier-lab IPOs push SF housing. Built fast for a real decision: product thinking + data engineering, not a hobby.", "video": null, "images": ["assets/realestate/slide-1.png", "assets/realestate/slide-2.png", "assets/realestate/slide-3.png", "assets/realestate/slide-4.png"]}, {"id": "motiontrackgame", "name": "motiontrackgame", "path": "~/Desktop/Code/motiontrackgame", "status": "dormant", "status_label": "Dormant", "commits": 0, "lines": 1231, "since": "\u2014", "since_raw": "", "summary": "Motion-capture spike streaming iPhone ARKit / MediaPipe body tracking to a Mac renderer to test body-as-controller latency before building a game. Half-built.", "video": null, "images": null}, {"id": "trackyourday", "name": "TrackYourDay", "path": "~/Desktop/Code/TrackYourDay", "status": "cold", "status_label": "Cold", "commits": 0, "lines": 515, "since": "\u2014", "since_raw": "", "summary": "Personal time / activity tracking app (abandoned since Apr 2026; superseded in spirit by the intelligence capture system).", "video": null, "images": null}, {"id": "transcription", "name": "Transcription", "path": "~/Desktop/Code/Transcription", "status": "active", "status_label": "Active", "commits": 0, "lines": 116, "since": "\u2014", "since_raw": "", "summary": "Read-only script that exports local Wispr Flow voice dictations from the app's SQLite DB into portable JSONL / Markdown. Feeds the capture pipeline.", "video": null, "images": null}, {"id": "symbiont", "name": "Symbiont", "path": "~/Desktop/Code/Symbiont", "status": "active", "status_label": "Active", "commits": 0, "lines": 0, "since": "\u2014", "since_raw": "", "summary": "Strategy / market-research docs (no code) for a consulting startup that embeds with academic biology labs to force AI-tool adoption. Adjacent to Organism.", "video": null, "images": null}], "totals": {"commits": 3583, "lines": 388355, "count": 16, "since": "Nov 2025", "months": 8, "active_days": 176, "span_days": 248}, "wispr": {"words": 436312, "wpm": 128, "speed_pctl": "top 0.5%", "streak": 32, "since": "Feb 2026"}, "manual": [], "timeline": {"points": [[1763293058, 1, 13201], [1763970382, 79, 21088], [1764462186, 121, 25306], [1765169459, 134, 26242], [1765781508, 160, 28114], [1766313320, 198, 34611], [1766909532, 220, 36012], [1767572751, 235, 36113], [1767874955, 259, 38135], [1768464305, 263, 38204], [1769199141, 269, 38889], [1769549004, 284, 41000], [1771188610, 308, 43985], [1771697407, 375, 53447], [1772428639, 401, 61181], [1773028249, 442, 68608], [1773566988, 467, 70342], [1773752737, 468, 70341], [1774853780, 526, 79002], [1775455600, 653, 87030], [1776663343, 768, 104754], [1777272926, 1122, 182309], [1777855307, 1373, 211819], [1778369569, 1393, 214065], [1779076935, 1536, 227522], [1779678867, 1699, 237556], [1780254668, 1818, 245205], [1780899648, 1929, 257788], [1781504080, 2004, 265430], [1782110212, 2415, 305165], [1782707465, 2805, 364387], [1783319975, 2932, 373703], [1783862414, 3265, 411390], [1784530761, 3491, 433727], [1784691545, 3583, 437056]], "commits": 3583, "lines": 437056, "active_days": 176, "span_days": 248}, "identity": {"name": "Nikhil Marudai", "tagline": "Immunologist &amp; self-taught systems builder.", "email": "nikhilmarudai00@gmail.com", "github": "https://github.com/NikhilMarudai", "linkedin": "https://www.linkedin.com/in/nikhil-marudai-23b128177/"}, "academic_pills": [{"v": "<em>Nature Immunology</em>", "l": "Second author", "s": "in revision"}, {"v": "Med school", "l": "Accepted, deferred", "s": "USF Morsani \u00b7 waitlisted Mayo &amp; Stanford"}, {"v": "4+ yrs", "l": "Research", "s": "lung fibroblast biology &amp; immunology"}, {"v": "UCSC", "l": "B.S. Human Biology \u00b7 Bioinformatics minor", "s": "summa cum laude"}], "credentials": ["Second author \u2014 <em>Nature Immunology</em> (in revision)", "First-author manuscript in preparation", "B.S. Human Biology (Bioinformatics minor), UCSC \u2014 summa cum laude", "4+ yrs lung fibroblast biology &amp; immunology research", "Accepted to USF Morsani College of Medicine (deferred); waitlisted at Mayo &amp; Stanford", "Y Combinator \u2014 application ranked top 10% of its batch (2026)"], "notes": {"reach": "109 downloads \u00b7 410 updates \u00b7 top user streaks 68 &amp; 144 days"}, "flagships": [{"id": "organism", "name": "Organism", "commits": 1770, "lines": 185512, "since": "Apr 2026 \u00b7 3 mo", "summary": "AI-native single-cell analysis platform (codename RGO). A bioinformatician uploads an AnnData file (scRNA/scATAC/bulk/ChIP/CITE/spatial) or a DataFrame; an auto-baseline runs in a per-session Jupyter kernel and an embedded LLM loops through typed tools to answer questions, make plots, and accumulate state. Heavy AI-engineering (harness, tool catalog, state snapshots) + bioinformatics.", "tag": "AI-native platform for single-cell analysis", "pills": ["YC top 10%", "led it \u00b7 built the core"], "video": "64vHFhdDKbY", "arch": "Built AI-native, end to end. The repo carries a live map of its own architecture that the agent reads before touching anything, so changes land in the right place fast. The core is an eval harness: benchmarks built from real datasets \u2014 published ones like the Boyd lab's whole-lung data, plus private data \u2014 that encode exactly what a correct answer looks like. Once a benchmark exists, we can point a model like Opus at a problem and let it iterate against it on its own \u2014 run, check, fix, repeat \u2014 until it passes. That autonomous loop is the single biggest reason we built this so fast."}, {"id": "reach", "name": "REACH", "commits": 1494, "lines": 166884, "since": "Nov 2025 \u00b7 8 mo", "summary": "Social-accountability / social-media platform (Django backend + Capacitor mobile). Streaks, challenges, verification, notifications, leaderboards; features include PostPulse, Wrapped, and Trophy Room.", "tag": "Social-accountability platform, shipped to the App Store", "pills": ["109 installs", "410 updates", "482 backend tests", "top streak 144 days"], "video": null, "arch": "Shipped fast because the process is AI-native: a full front-end + architecture map the agent works from, an agent loop that auto-debugs and pushes updates once CI passes, and import-linter + a verification lane keeping a large Django / Capacitor codebase honest \u2014 482 backend tests enforce it."}], "flagship_ids": ["organism", "reach"]};
+const nf = n => n.toLocaleString();
+const css = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
+
+const I = D.identity;
+document.getElementById("idname").textContent = I.name;
+document.getElementById("idlinks").innerHTML =
+  `<a href="mailto:${I.email}">email</a> · <a href="${I.github}" target="_blank" rel="noopener">github</a> · <a href="${I.linkedin}" target="_blank" rel="noopener">linkedin</a>`;
+document.getElementById("acad").innerHTML =
+  D.academic_pills.map(p => `<div class="sig"><div class="cn">${p.v}</div><div class="l"><b>${p.l}</b><br>${p.s}</div></div>`).join("");
+document.getElementById("creds").innerHTML =
+  D.credentials.map(c => `<div><span class="b">·</span>${c}</div>`).join("");
+document.getElementById("flags").innerHTML = D.flagships.map(f => `
+  <div class="flag">
+    <div class="flag-name">${f.name}</div>
+    <div class="flag-tag">${f.tag}</div>
+    <div class="flag-pills">
+      <span class="fp"><b>${nf(f.commits)}</b> commits</span>
+      <span class="fp"><b>${nf(f.lines)}</b> lines</span>
+      ${f.pills.map(p => `<span class="fp fp-accent">${p}</span>`).join("")}
+      <span class="fp">${f.since}</span>
+    </div>
+    <div class="flag-body">
+      <div class="flag-desc">
+        <p>${f.summary}</p>
+        <details class="flag-arch"><summary>how it was built — AI-native</summary><div class="arch">${f.arch}</div></details>
+      </div>
+      ${f.video
+        ? `<a class="flag-media" href="https://youtu.be/${f.video}" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/${f.video}/hqdefault.jpg" alt="${f.name} demo"><span class="play">▶</span></a>`
+        : ""}
+    </div>
+  </div>`).join("");
+
+function band(){
+  const t = D.totals, w = D.wispr;
+  const tiles = [
+    [t.months + " mo", "building", "since " + t.since],
+    [nf(t.active_days), "days shipping code", "out of " + t.span_days + " · ~7 in 10"],
+    [nf(t.commits), "git commits", "across " + t.count + " projects"],
+    ["~" + nf(t.lines), "lines of source", ""],
+    [nf(w.words), "words dictated", "via Wispr Flow · desktop + mobile"],
+  ];
+  document.getElementById("band").innerHTML = tiles.map(t =>
+    `<div class="sig"><div class="n${t[3]?' set':''}">${t[0]}</div>`+
+    `<div class="l"><b>${t[1]}</b><br>${t[2]||""}</div></div>`).join("");
+}
+
+// ---- area chart (single series, time x) ----
+function chart(rootId, heroId, idx, color){
+  const pts = D.timeline.points;            // [ts, commits, lines]
+  if(!pts.length) return;
+  document.getElementById(heroId).textContent = nf(pts[pts.length-1][idx]);
+  document.getElementById(heroId).style.color = color;
+  const W=340,H=150,pl=6,pr=10,pt=12,pb=18;
+  const xs=pts.map(p=>p[0]), ys=pts.map(p=>p[idx]);
+  const x0=xs[0],x1=xs[xs.length-1],ymax=Math.max(...ys,1);
+  const X=t=>pl+(t-x0)/(x1-x0)*(W-pl-pr);
+  const Y=v=>H-pb-(v/ymax)*(H-pt-pb);
+  let line=`M${X(xs[0]).toFixed(1)},${Y(ys[0]).toFixed(1)}`;
+  pts.forEach(p=>line+=`L${X(p[0]).toFixed(1)},${Y(p[idx]).toFixed(1)}`);
+  const area=line+`L${X(x1).toFixed(1)},${H-pb}L${X(x0).toFixed(1)},${H-pb}Z`;
+  // month gridlines
+  let ticks="";const seen=new Set();
+  pts.forEach(p=>{const d=new Date(p[0]*1000);const key=d.getFullYear()+"-"+d.getMonth();
+    if(!seen.has(key)&&d.getDate()<=9){seen.add(key);const xx=X(p[0]).toFixed(1);
+      ticks+=`<line x1="${xx}" y1="${pt}" x2="${xx}" y2="${H-pb}" stroke="${css('--grid')}" stroke-width="1"/>`+
+             `<text x="${xx}" y="${H-6}" class="ax" text-anchor="middle">${d.toLocaleString('en',{month:'short'})}</text>`;}});
+  const svg=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img">
+    ${ticks}
+    <path d="${area}" fill="${color}" opacity="0.12"/>
+    <path d="${line}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="${X(x1).toFixed(1)}" cy="${Y(ys[ys.length-1]).toFixed(1)}" r="3" fill="${color}"/>
+    <line id="cx" x1="0" y1="${pt}" x2="0" y2="${H-pb}" stroke="${color}" stroke-width="1" opacity="0"/>
+    <rect id="hit" x="0" y="0" width="${W}" height="${H}" fill="transparent"/></svg>`;
+  const root=document.getElementById(rootId);
+  root.insertAdjacentHTML("beforeend", svg);
+  const tip=document.createElement("div");tip.className="tip";root.appendChild(tip);
+  const el=root.querySelector("svg"), hit=root.querySelector("#hit"), cx=root.querySelector("#cx");
+  hit.addEventListener("mousemove",e=>{
+    const r=el.getBoundingClientRect();
+    const t=x0+((e.clientX-r.left)/r.width)*(x1-x0);
+    let best=pts[0];for(const p of pts) if(Math.abs(p[0]-t)<Math.abs(best[0]-t)) best=p;
+    const px=(X(best[0])/W)*r.width, py=(Y(best[idx])/H)*r.height;
+    cx.setAttribute("x1",X(best[0]));cx.setAttribute("x2",X(best[0]));cx.setAttribute("opacity","0.5");
+    tip.style.opacity="1";tip.style.left=px+"px";tip.style.top=py+"px";
+    tip.textContent=`${new Date(best[0]*1000).toLocaleDateString('en',{month:'short',day:'numeric'})} · ${nf(best[idx])}`;
+  });
+  hit.addEventListener("mouseleave",()=>{tip.style.opacity="0";cx.setAttribute("opacity","0");});
+}
+
+function rows(list){
+  const vis = list.filter(p => !D.flagship_ids.includes(p.id));
+  document.getElementById("others").innerHTML = vis.map(p=>{
+    const meta = [
+      `<span class="dot d-${p.status}"></span>${p.status_label}`,
+      p.commits ? `${nf(p.commits)} commits` : "",
+      p.lines ? `${nf(p.lines)} lines` : "",
+      p.since !== "—" ? p.since : ""
+    ].filter(Boolean).join(" · ");
+    let thumb = "";
+    if(p.images && p.images.length > 1){
+      thumb = `<div class="othumb oslide">`+
+        p.images.map((s,i)=>`<img src="${s}" class="${i===0?'on':''}" alt="${p.name}">`).join("")+
+        `<button class="onav oprev" aria-label="previous">‹</button><button class="onav onext" aria-label="next">›</button>`+
+        `<div class="odots">`+p.images.map((s,i)=>`<i class="${i===0?'on':''}"></i>`).join("")+`</div></div>`;
+    } else if(p.images && p.images.length === 1){
+      thumb = `<a class="othumb" href="${p.images[0]}" target="_blank" rel="noopener"><img src="${p.images[0]}" alt="${p.name}"></a>`;
+    } else if(p.video){
+      thumb = `<a class="othumb" href="https://youtu.be/${p.video}" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/${p.video}/hqdefault.jpg" alt="${p.name} demo"><span class="play">▶</span></a>`;
+    }
+    return `<div class="ocard"><div class="ocard-main">
+        <div class="ohead"><span class="oname">${p.name}</span><span class="ometa">${meta}</span></div>
+        <div class="odesc">${p.summary||""}</div>
+      </div>${thumb}</div>`;
+  }).join("");
+  document.getElementById("ocount").textContent = `${vis.length} other projects`;
+  wireSlides();
+}
+
+function wireSlides(){
+  document.querySelectorAll(".oslide").forEach(sl=>{
+    const imgs=[...sl.querySelectorAll("img")], dots=[...sl.querySelectorAll(".odots i")];
+    let i=0, t;
+    const show=n=>{i=(n+imgs.length)%imgs.length;
+      imgs.forEach((im,k)=>im.classList.toggle("on",k===i));
+      dots.forEach((d,k)=>d.classList.toggle("on",k===i));};
+    const play=()=>{t=setInterval(()=>show(i+1),3500);};
+    sl.querySelector(".oprev").onclick=e=>{e.preventDefault();show(i-1);};
+    sl.querySelector(".onext").onclick=e=>{e.preventDefault();show(i+1);};
+    dots.forEach((d,k)=>d.onclick=e=>{e.preventDefault();show(k);});
+    sl.onmouseenter=()=>clearInterval(t); sl.onmouseleave=play;
+    play();
+  });
+}
+
+document.getElementById("q").oninput = e=>{
+  const q=e.target.value.toLowerCase().trim();
+  rows(D.projects.filter(p=>!q || (p.name+" "+p.summary).toLowerCase().includes(q)));
+};
+
+document.getElementById("notes").innerHTML =
+  "Two different measures, both from git. <b>Lines of source</b> = non-blank source in tracked files "+
+  "<i>as they exist now</i> (vendored, generated, minified and duplicated worktrees excluded). "+
+  "<b>Lines written</b> = cumulative additions across git history — it includes blank lines and code "+
+  "since rewritten, so it runs higher by design. Words dictated is the Wispr Flow account total "+
+  "(desktop + mobile). Live-generated · " + D.generated + ".";
+
+band();
+chart("c-lines","h-lines",2,css('--accent'));
+chart("c-commits","h-commits",1,css('--accent'));
+rows(D.projects);
+</script>
+</body>
+</html>
