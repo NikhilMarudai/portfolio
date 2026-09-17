@@ -38,9 +38,9 @@
   .idlinks a{color:var(--accent);text-decoration:none}
   .idlinks a:hover{text-decoration:underline}
   .identity-hero{display:grid;grid-template-columns:minmax(0,1fr) 224px;
-    grid-template-areas:"head portrait" "intro portrait";column-gap:34px;align-items:start}
+    grid-template-areas:"head ." "intro portrait";column-gap:34px;align-items:start}
   .identity-head{grid-area:head;min-width:0}
-  .portrait{grid-area:portrait;margin:0;align-self:start}
+  .portrait{grid-area:portrait;margin:0;align-self:center;transform:translateY(12px)}
   .portrait img{display:block;width:100%;height:auto;aspect-ratio:669/621;object-fit:cover;
     border:1px solid var(--line);border-radius:9px}
   .intro{grid-area:intro;max-width:76ch;margin-top:24px;color:var(--muted);font-size:15px;line-height:1.65}
@@ -56,6 +56,7 @@
     .idhead h1{grid-area:name}
     .topnav{grid-area:nav}
     .idlinks{grid-area:links;margin-top:0}
+    .portrait{transform:none}
     .portrait img{aspect-ratio:1;object-position:45% center}
     .intro{margin-top:10px}
   }
