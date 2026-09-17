@@ -102,11 +102,12 @@
   .share-intro .section-share-panel{left:0;right:auto}
   [id]{scroll-margin-top:24px}
   .section-share{position:relative;flex:none;font-size:13px;font-weight:400;letter-spacing:0}
-  .section-share summary{display:grid;place-items:center;list-style:none;width:44px;height:44px;
-    border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--muted);
-    cursor:pointer;font-size:22px;line-height:1}
+  .section-share summary{display:grid;place-items:center;list-style:none;width:32px;height:32px;
+    border:0;border-radius:6px;background:transparent;color:var(--faint);
+    cursor:pointer;font-size:16px;line-height:1}
   .section-share summary::-webkit-details-marker{display:none}
-  .section-share summary:hover,.section-share[open] summary{border-color:var(--accent);color:var(--accent)}
+  .section-share summary:hover,.section-share[open] summary{background:var(--accent-soft);color:var(--accent)}
+  @media(max-width:640px){.section-share summary{width:44px;height:44px}}
   .section-share :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   .section-share-panel{position:absolute;right:0;top:calc(100% + 6px);z-index:20;
     width:min(280px,calc(100vw - 44px));padding:8px;background:var(--panel);
