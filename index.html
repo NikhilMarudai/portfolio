@@ -92,7 +92,32 @@
     margin:24px 0 12px;padding-bottom:8px;border-bottom:1.5px solid var(--ink)}
   .seclabel-note{font-weight:400;color:var(--faint);font-family:var(--mono);font-size:12px;letter-spacing:0}
   .secsub{font-size:12.5px;color:var(--muted);margin:-6px 0 14px;line-height:1.5}
-  #bg-sec,#life-sec,#others-sec{margin-top:36px;scroll-margin-top:24px}
+  .share-heading{display:flex;align-items:center;gap:12px;position:relative}
+  .share-heading>h2,.share-heading>h1{flex:1;min-width:0}
+  .share-heading>h2{font:inherit;letter-spacing:inherit;margin:0;padding:0}
+  .share-heading.section-spaced{margin-top:36px}
+  .share-intro{grid-area:name}
+  .share-intro .section-share{position:static}
+  .share-intro .section-share-panel{left:0;right:auto}
+  [id]{scroll-margin-top:24px}
+  .section-share{position:relative;flex:none;font-size:13px;font-weight:400;letter-spacing:0}
+  .section-share summary{display:grid;place-items:center;list-style:none;width:44px;height:44px;
+    border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--muted);
+    cursor:pointer;font-size:22px;line-height:1}
+  .section-share summary::-webkit-details-marker{display:none}
+  .section-share summary:hover,.section-share[open] summary{border-color:var(--accent);color:var(--accent)}
+  .section-share :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .section-share-panel{position:absolute;right:0;top:calc(100% + 6px);z-index:20;
+    width:min(280px,calc(100vw - 44px));padding:8px;background:var(--panel);
+    border:1px solid var(--line);border-radius:10px;box-shadow:0 6px 24px #0002}
+  .section-share-panel button,.section-share-panel a{display:block;width:100%;padding:10px;
+    border:0;border-radius:5px;background:transparent;color:var(--ink);font:inherit;
+    text-align:left;text-decoration:none;cursor:pointer;min-height:44px}
+  .section-share-panel button:hover,.section-share-panel a:hover{background:var(--accent-soft)}
+  .section-share-panel input{width:100%;padding:8px;border:1px solid var(--line);border-radius:5px;
+    color:var(--ink);background:var(--bg);font-size:12px}
+  .section-share-status{color:var(--muted);font-size:12px;line-height:1.4;padding:0 10px}
+  .section-share-status:empty{display:none}
   .creds{font-size:14px;color:var(--muted);line-height:1.6}
   .cred-group{padding:20px 0 26px;border-bottom:1px solid var(--line)}
   .cred-group:last-child{padding-bottom:0;border-bottom:0}
@@ -343,7 +368,7 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="identity-hero">
+  <div class="identity-hero" id="about">
     <div class="identity-head">
       <div class="idhead">
         <h1 id="idname"></h1>
@@ -367,19 +392,19 @@
     </figure>
   </div>
 
-  <h2 class="seclabel">Academics</h2>
+  <h2 class="seclabel" id="academics">Academics</h2>
   <div class="band" id="acad"></div>
 
-  <h2 class="seclabel">Output</h2>
+  <h2 class="seclabel" id="output">Output</h2>
   <div class="band" id="band"></div>
 
-  <h2 class="seclabel">Growth over time</h2>
+  <h2 class="seclabel" id="growth">Growth over time</h2>
   <div class="charts">
     <div class="chart" id="c-lines"><h3>Lines written (cumulative)</h3><div class="hero" id="h-lines"></div></div>
     <div class="chart" id="c-commits"><h3>Commits</h3><div class="hero" id="h-commits"></div></div>
   </div>
 
-  <div id="wrapped"></div>
+  <section id="wrapped"><h2 class="seclabel" id="wrapped-title">Standout · AI Wrapped</h2><div id="wrapped-content"></div></section>
 
   <h2 class="seclabel" id="flags-sec">Flagships</h2>
   <div id="flags"></div>
@@ -639,7 +664,7 @@ if(D.life){
   }
 }
 if(D.wrapped){ const W = D.wrapped;
-  document.getElementById("wrapped").innerHTML = `
+  document.getElementById("wrapped-content").innerHTML = `
   <div class="wrapped">
     <div class="wrapped-gallery" role="region" aria-roledescription="carousel" aria-label="AI Wrapped sections">
       <div class="wrapped-stage">${W.slides.map((s,i)=>`<figure class="wrapped-slide" ${i ? "hidden" : ""} role="group" aria-roledescription="slide" aria-label="${i+1} of ${W.slides.length}: ${s.label}">
@@ -694,6 +719,65 @@ window.addEventListener("hashchange", () => {
   if(location.hash === "#others-sec") setOthersOpen(true);
 });
 setOthersOpen(location.hash === "#others-sec");
+
+// Stable public URLs, including when copied from the internal dashboard or a preview.
+const publicPage = "https://nikhilmarudai.github.io/portfolio/";
+document.querySelectorAll("h2.seclabel, #idname").forEach(heading => {
+  const id = heading.id === "idname" ? "about" : heading.id === "wrapped-title" ? "wrapped" : heading.id;
+  const label = heading.id === "idname" ? "Introduction" : (heading.querySelector("button > span") || heading).textContent.split("·")[0].trim();
+  const url = publicPage + "#" + id;
+  const row = document.createElement("div");
+  row.className = heading.matches("h2") ? "seclabel share-heading" : "share-heading share-intro";
+  if(["bg-sec", "life-sec", "others-sec"].includes(id)) row.classList.add("section-spaced");
+  heading.before(row);
+  row.append(heading);
+  heading.classList.remove("seclabel");
+  const share = document.createElement("details");
+  share.className = "section-share";
+  share.innerHTML = `<summary aria-label="Section options"><span aria-hidden="true">⋯</span></summary>
+    <div class="section-share-panel">
+      <button type="button">Copy section link</button>
+      <a>Open section link ↗</a>
+      <input type="text" readonly hidden aria-label="Section link — select and copy">
+      <p class="section-share-status" role="status"></p>
+    </div>`;
+  const summary = share.querySelector("summary");
+  summary.setAttribute("aria-label", "Section options: " + label);
+  const link = share.querySelector("a");
+  link.href = url;
+  const input = share.querySelector("input");
+  input.value = url;
+  const status = share.querySelector(".section-share-status");
+  share.querySelector("button").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(url);
+      status.textContent = "Link copied";
+      input.hidden = true;
+    } catch {
+      input.hidden = false;
+      status.textContent = "Select and copy this link.";
+      input.focus();
+      input.select();
+    }
+  });
+  share.addEventListener("toggle", () => {
+    if(!share.open){ status.textContent = ""; input.hidden = true; }
+  });
+  row.append(share);
+});
+document.addEventListener("click", event => {
+  document.querySelectorAll(".section-share[open]").forEach(share => {
+    if(!share.contains(event.target)) share.open = false;
+  });
+});
+document.addEventListener("keydown", event => {
+  if(event.key !== "Escape") return;
+  document.querySelectorAll(".section-share[open]").forEach(share => {
+    const hadFocus = share.contains(document.activeElement);
+    share.open = false;
+    if(hadFocus) share.querySelector("summary").focus();
+  });
+});
 </script>
 </body>
 </html>
