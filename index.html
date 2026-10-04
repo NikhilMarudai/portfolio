@@ -58,6 +58,13 @@
   .bio[open] .bio-mark::before{content:"−"}
   .bio-body{max-width:70ch;padding:4px 0 18px;color:var(--muted);font-size:1rem;line-height:1.7}
   .bio-body p+p{margin-top:14px}
+  .bio-note{color:var(--ink)}
+  .bio-source{font-family:var(--mono);font-size:.8125rem;color:var(--muted)}
+  .bio-speaker{font-size:1rem;font-weight:700;color:var(--ink);margin:24px 0 10px}
+  .bio-body blockquote{border-left:2px solid var(--accent);padding-left:16px;margin:14px 0}
+  .bio-prompt{color:var(--ink)}
+  .bio-response h3{font-size:1.125rem;line-height:1.4;color:var(--ink);margin:28px 0 12px}
+  .bio-response strong{color:var(--ink);font-weight:600}
   .idhead{display:flex;align-items:baseline;justify-content:space-between;gap:20px 28px;flex-wrap:wrap}
   @media(max-width:640px){
     .identity-hero{grid-template-columns:minmax(0,1fr) 112px;
@@ -416,27 +423,115 @@
            width="669" height="621" fetchpriority="high" decoding="async">
     </figure>
     <details class="bio" id="bio">
-      <summary><span class="bio-mark" aria-hidden="true"></span>More about Nikhil</summary>
+      <summary><span class="bio-mark" aria-hidden="true"></span>ChatGPT's summary of Nikhil</summary>
       <div class="bio-body">
-        <p>Nikhil Marudai is a builder with a background in biology and bioinformatics. His
-          long-term aim is to bring science, technology, and medicine together to improve human
-          health. He wants to keep learning across fields, including machine learning and robotics,
-          and follow the problems that interest him wherever they lead.</p>
-        <p>His scientific background includes research on lung fibroblasts, immunology, and
-          influenza. Building with AI has given him another way to put that knowledge to use.
-          Organism brings AI into biological analysis, while groundloop checks scientific claims
-          against data and literature. REACH explores a different problem: helping people follow
-          through on personal goals through accountability and community.</p>
-        <p>He likes choosing problems just beyond what he already knows how to solve. Building
-          forces him to learn, and iteration gives that learning a direction: make something,
-          test it, understand what failed, and improve it. He looks for connections between fields
-          because a tool or idea from one area can make a difficult problem in another more
-          approachable.</p>
-        <p>Human health remains a guiding purpose. His interest in AI safety and biosecurity
-          also raises questions about how powerful technology can improve lives while preserving
-          people's ability to make decisions and shape their futures. He wants to build among
-          people he can learn from, share what he is exploring, and turn those ideas into things
-          that help people.</p>
+        <p class="bio-note">A summary from ChatGPT, drawing on Nikhil's chat history, that he felt did a good job of capturing who he is. The original exchange is reproduced below.</p><p class="bio-source">Personal Context Summary · October 4, 2026</p><h2 class="bio-speaker">Nikhil's prompt</h2><blockquote class="bio-prompt">What context do you know about me: about my goals, my vision, my operating principles?</blockquote><h2 class="bio-speaker">ChatGPT's response</h2><article class="bio-response"><p>I have a fairly coherent picture of you, though some of it is <strong>explicitly stated by you</strong> and some is <strong>my synthesis from repeated themes</strong>.</p>
+<p>At the highest level, your trajectory seems to have shifted from a narrower <strong>“become an oncologist/physician-scientist”</strong> goal toward something broader:</p>
+<p><strong>Become a high-agency builder/inventor who can attack important problems across domains—especially cancer, biology, AI, and human health—using science, software, capital, organizations, and whatever other tools are necessary.</strong></p>
+<p>Medicine still matters to you, but increasingly as part of a larger mission rather than necessarily the central identity.</p>
+<h3>Your vision</h3>
+<p>The recurring theme is <strong>“build things that materially move reality.”</strong></p>
+<p>You seem drawn to the Tony Stark–type archetype—not the wealth/status caricature, but the underlying structure: enough technical fluency, resources, independence, and organizational capacity to identify hard problems and actually build solutions to them.</p>
+<p>You don&#x27;t seem interested in spending your career optimizing one tiny niche. You repeatedly gravitate toward intersections:</p>
+<p><strong>biology × AI × software × hardware × medicine × business × capital</strong></p>
+<p>and you think some of the largest advances come from being able to connect those worlds rather than staying inside one discipline.</p>
+<p>Cancer is probably the clearest example. Your recent thinking isn&#x27;t merely, “How do I do cancer research?” It is increasingly:</p>
+<p><strong>Why is cancer research organized the way it is? What information exists? What is fragmented? What would the infrastructure look like if a highly motivated patient/researcher/team could pull together sequencing, pathology, mutations, single-cell data, drugs, literature, biomarkers, clinical history, experiments, and models into one usable reasoning environment?</strong></p>
+<p>In other words, you&#x27;re interested in <strong>infrastructure that increases the rate at which people can solve problems</strong>, not only solving one instance yourself.</p>
+<p>That same pattern shows up in your interest in AI agents, scientific tools, genomics, content systems, measurement apps, medical AI, automated clinics, and even your ideas around organizing your own life.</p>
+<h3>Your underlying mission</h3>
+<p>A phrase that captures a lot of it is:</p>
+<p><strong>Increase human agency against problems that currently feel inevitable.</strong></p>
+<p>Disease is the obvious case. You fundamentally do not seem to accept “there&#x27;s nothing we can do” very easily. Your instinct is to ask what data is missing, what experiment could be run, what technology could be built, what specialist could be connected, or what assumption everyone else has accepted unnecessarily.</p>
+<p>That attitude predates the startup ideas. In your earlier medical-school thinking, you repeatedly talked about cancer as something humanity should eventually be able to solve given enough knowledge, coordination, technology, time, and resources.</p>
+<p>You also care that the result reaches actual people. Your earlier physician-scientist vision combined frontier research with giving individual patients <strong>clarity, attention, hope, and the best available shot</strong>, particularly when the system might otherwise dismiss them.</p>
+<p>That hasn&#x27;t disappeared. It has become more systemic.</p>
+<h3>How you tend to think</h3>
+<p>You have a strong <strong>first-principles / mechanism-seeking instinct</strong>.</p>
+<p>You rarely seem satisfied with:</p>
+<blockquote>“This is the standard way people do it.”</blockquote>
+<p>You usually continue one layer deeper:</p>
+<p><strong>Why? What is physically/computationally/biologically happening? What constraint created this convention? Is that constraint still real?</strong></p>
+<p>That&#x27;s visible in conversations ranging from photolithography to LiDAR to transformers to cancer diagnostics.</p>
+<p>You also like building <strong>maps of problem spaces</strong> before committing. You want to understand the actors, information flows, bottlenecks, technologies, economics, incentives, and frontier approaches.</p>
+<p>And once you understand the map, your instinct is to ask:</p>
+<p><strong>Where is the leverage?</strong></p>
+<p>Not simply “What can I do?” but “What intervention changes the capabilities of everyone downstream?”</p>
+<h3>Your operating principles</h3>
+<p>A few recur very strongly.</p>
+<p><strong>Truth over convention.</strong><br>
+You want to understand what is actually true rather than merely what institutions, experts, or conventional workflows say. You are willing to question assumptions, but you generally want empirical/mechanistic grounding rather than contrarianism for its own sake.</p>
+<p><strong>Execution &gt; consumption.</strong><br>
+You&#x27;ve increasingly become skeptical of endless reading, planning, courses, and information accumulation. Your preferred loop is something closer to:</p>
+<p><strong>build → test → fail → diagnose → modify → repeat.</strong></p>
+<p>You have explicitly gravitated toward volume, repetition, implementation, troubleshooting, and closing loops.</p>
+<p><strong>Find the bottleneck.</strong><br>
+You don&#x27;t like optimizing twenty peripheral things. You tend to ask what the root constraint is and attack that.</p>
+<p><strong>Simplify aggressively.</strong><br>
+Your instinct is increasingly to avoid elaborate systems until complexity is justified. Get something working, learn from reality, then improve it.</p>
+<p><strong>Learn on demand.</strong><br>
+You want broad conceptual maps, but you don&#x27;t seem interested in collecting credentials or mastering theory disconnected from something you&#x27;re trying to accomplish. You tend to learn the math, biology, coding, business, or engineering required to cross the next obstacle.</p>
+<p><strong>Interdisciplinary arbitrage.</strong><br>
+You repeatedly notice that something obvious in one field can be surprisingly absent in another. You want enough fluency across fields to exploit those gaps.</p>
+<p><strong>High agency.</strong><br>
+Your default question is often not “Who is responsible for this?” but <strong>“Could we just build it?”</strong></p>
+<p><strong>Optionality and independence matter.</strong><br>
+This shows up in your interest in entrepreneurship, investing, owning infrastructure, building technical capability, and eventually having sufficient capital and autonomy to pursue important projects without waiting for institutional permission.</p>
+<p><strong>Systems should protect the important work.</strong><br>
+You&#x27;ve shown interest in automation, AI agents, organization systems, and workflows largely because you want administrative friction handled so that human attention can go toward reasoning, creating, experimenting, and relationships.</p>
+<p><strong>Don&#x27;t confuse effort with progress.</strong><br>
+You&#x27;ve increasingly cared about measurable output and completed loops rather than just being busy.</p>
+<h3>Your relationship with ambition</h3>
+<p>Your ambitions are unusually broad, but you also seem aware of the danger of becoming someone who talks about enormous things without building anything.</p>
+<p>A lot of your recent behavior looks like an attempt to solve that tension.</p>
+<p>Rather than saying:</p>
+<p><strong>“Someday I&#x27;ll create an advanced research organization.”</strong></p>
+<p>you&#x27;re asking:</p>
+<p><strong>What can I ship this week?<br>
+What tool can I make?<br>
+What dataset can I analyze?<br>
+What person can I talk to?<br>
+What experiment can I run?<br>
+What content can I publish?</strong></p>
+<p>That&#x27;s an important shift in your operating model.</p>
+<p>You seem to increasingly believe that <strong>identity should emerge from repeated evidence of doing the thing</strong>, rather than declaring the identity first.</p>
+<h3>Your relationship with risk</h3>
+<p>You appear relatively <strong>risk tolerant</strong>, particularly with career paths, startups, technological bets, and investments.</p>
+<p>But the deeper preference isn&#x27;t simply risk.</p>
+<p>It&#x27;s <strong>asymmetric upside</strong>.</p>
+<p>You are attracted to situations where losing is survivable but winning meaningfully changes your trajectory.</p>
+<p>That includes learning frontier AI early, building startups while young, experimenting publicly, investing in technological shifts, and potentially deviating from a very safe conventional professional path.</p>
+<p>At the same time, you&#x27;re interested in creating enough financial and technical independence that you can take increasingly ambitious bets later.</p>
+<h3>Your scientific worldview</h3>
+<p>You seem to have a fundamentally <strong>engineering-oriented view of biology</strong>.</p>
+<p>Not that biology is simple—but that biological complexity is ultimately understandable enough that sufficiently powerful measurement, computation, experimentation, and intervention should allow us to manipulate it much more deliberately.</p>
+<p>That&#x27;s why genomics, single-cell biology, early cancer detection, immunology, AI models, longitudinal data, and automation keep converging in your thinking.</p>
+<p>Your intuition seems to be that the bottleneck in biology is increasingly not merely generating information but:</p>
+<p><strong>integrating it, representing it, reasoning over it, designing the next experiment, and closing the loop quickly.</strong></p>
+<p>That is very closely connected to the cancer infrastructure idea you&#x27;ve been exploring.</p>
+<h3>Your human values</h3>
+<p>There&#x27;s another side that would be easy to miss if I only looked at your recent startup/technology conversations.</p>
+<p>You consistently care about <strong>people retaining dignity and agency</strong>.</p>
+<p>Earlier this showed up in how you talked about patients: listen carefully, don&#x27;t dismiss symptoms, explain what is happening, communicate across language barriers, and don&#x27;t leave someone feeling helpless.</p>
+<p>It also showed up in your work around unhoused young adults: not merely giving temporary aid, but building environments and systems that let people become healthier and more independent.</p>
+<p>So your idea of “helping” tends to favor <strong>empowerment over dependency</strong>.</p>
+<p>Your father&#x27;s leukemia and your family&#x27;s experience with medicine clearly influenced your interest in cancer and the feeling that patients confronting severe disease deserve every possible avenue explored. I don&#x27;t read your cancer ambition as abstract techno-optimism alone. There is a personal reason behind the intolerance for helplessness.</p>
+<h3>The life you seem to be trying to construct</h3>
+<p>If I compress the picture, I don&#x27;t think your desired endpoint is simply:</p>
+<p><strong>doctor</strong>,<br>
+<strong>scientist</strong>,<br>
+<strong>founder</strong>,<br>
+<strong>investor</strong>,<br>
+or <strong>content creator</strong>.</p>
+<p>It&#x27;s closer to:</p>
+<blockquote><strong>A technically capable independent builder with enough scientific depth, computational leverage, capital, network, and organizational capacity to repeatedly take on consequential problems—and actually ship solutions.</strong></blockquote>
+<p>Potentially with your own labs or research infrastructure eventually.</p>
+<p>You want to be able to move between an idea on a whiteboard, a biological experiment, an AI system, a company, a piece of hardware, and a real-world deployment rather than being confined to one layer.</p>
+<p>And underneath all of it is something like:</p>
+<p><strong>Understand reality deeply enough to change it deliberately.</strong></p>
+<p>Or, using language you&#x27;ve gravitated toward before:</p>
+<p><strong>Shape reality.</strong></p>
+<p>I think that&#x27;s the most coherent model I currently have of you.</p></article>
       </div>
     </details>
   </div>
