@@ -38,7 +38,7 @@
   .idlinks a{color:var(--accent);text-decoration:none}
   .idlinks a:hover{text-decoration:underline}
   .identity-hero{display:grid;grid-template-columns:minmax(0,1fr) 224px;
-    grid-template-areas:"head ." "intro portrait";column-gap:34px;align-items:start}
+    grid-template-areas:"head ." "intro portrait" "bio bio";column-gap:34px;align-items:start}
   .identity-head{grid-area:head;min-width:0}
   .portrait{grid-area:portrait;margin:0;align-self:center;transform:translateY(12px)}
   .portrait img{display:block;width:100%;height:auto;aspect-ratio:669/621;object-fit:cover;
@@ -47,10 +47,21 @@
   .intro p+p{margin-top:10px}
   .intro a{color:var(--accent);text-underline-offset:3px}
   .intro a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .bio{grid-area:bio;min-width:0;margin-top:14px;border-top:1px solid var(--line)}
+  .bio summary{display:flex;align-items:center;gap:10px;width:fit-content;min-height:44px;
+    cursor:pointer;list-style:none;color:var(--accent);font-size:1rem;font-weight:600}
+  .bio summary::-webkit-details-marker{display:none}
+  .bio summary:hover{text-decoration:underline;text-underline-offset:3px}
+  .bio summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+  .bio-mark{width:1em;text-align:center;font-weight:400}
+  .bio-mark::before{content:"+"}
+  .bio[open] .bio-mark::before{content:"−"}
+  .bio-body{max-width:70ch;padding:4px 0 18px;color:var(--muted);font-size:1rem;line-height:1.7}
+  .bio-body p+p{margin-top:14px}
   .idhead{display:flex;align-items:baseline;justify-content:space-between;gap:20px 28px;flex-wrap:wrap}
   @media(max-width:640px){
     .identity-hero{grid-template-columns:minmax(0,1fr) 112px;
-      grid-template-areas:"name portrait" "nav nav" "links links" "intro intro";
+      grid-template-areas:"name portrait" "nav nav" "links links" "intro intro" "bio bio";
       column-gap:16px;row-gap:9px}
     .identity-head,.idhead{display:contents}
     .idhead h1{grid-area:name}
@@ -404,6 +415,30 @@
       <img src="assets/nikhil-portrait.jpg" alt="Nikhil Marudai smiling at an indoor gathering"
            width="669" height="621" fetchpriority="high" decoding="async">
     </figure>
+    <details class="bio" id="bio">
+      <summary><span class="bio-mark" aria-hidden="true"></span>More about Nikhil</summary>
+      <div class="bio-body">
+        <p>Nikhil Marudai is a builder with a background in biology and bioinformatics. His
+          long-term aim is to bring science, technology, and medicine together to improve human
+          health. He wants to keep learning across fields, including machine learning and robotics,
+          and follow the problems that interest him wherever they lead.</p>
+        <p>His scientific background includes research on lung fibroblasts, immunology, and
+          influenza. Building with AI has given him another way to put that knowledge to use.
+          Organism brings AI into biological analysis, while groundloop checks scientific claims
+          against data and literature. REACH explores a different problem: helping people follow
+          through on personal goals through accountability and community.</p>
+        <p>He likes choosing problems just beyond what he already knows how to solve. Building
+          forces him to learn, and iteration gives that learning a direction: make something,
+          test it, understand what failed, and improve it. He looks for connections between fields
+          because a tool or idea from one area can make a difficult problem in another more
+          approachable.</p>
+        <p>Human health remains a guiding purpose. His interest in AI safety and biosecurity
+          also raises questions about how powerful technology can improve lives while preserving
+          people's ability to make decisions and shape their futures. He wants to build among
+          people he can learn from, share what he is exploring, and turn those ideas into things
+          that help people.</p>
+      </div>
+    </details>
   </div>
 
   <h2 class="seclabel" id="academics">Academics</h2>
